@@ -19,6 +19,7 @@ PImage turtleImg;
 PImage turtleButtonImg;
 PImage turtleImgAlt;
 PImage turtleTitleScreen;
+PImage turtleTitle;
 
 ArrayList <turtle> turtle;
 
@@ -50,16 +51,27 @@ void draw() {
   if (mode == 0) {
     textSize(48);
     fill(1, 52, 131);
-    text("Turtle Racing", 215, 300);
+    text("Turtle Racing", 185, 300);
+    
+    textSize(16);
+    fill(55, 3, 100);
+    text("Version 1.0.2", 5, 675);
+    
+    
     drawStartButton();
     BGM.pause();
     
     turtleTitleScreen = loadImage("turtle.png");
     imageMode(CENTER);
     turtleTitleScreen.resize(80, 80);
-    image(turtleTitleScreen, 150, 245);
+    image(turtleTitleScreen, 125, 245);
     image(turtleTitleScreen, 500, 105);
     image(turtleTitleScreen, 350, 550);
+    
+    turtleTitle = loadImage("emoji.png");
+    imageMode(CENTER);
+    turtleTitle.resize(80, 80);
+    image(turtleTitle, 500, 275);
   }
   else if (mode == 1) {
     textSize(36);
