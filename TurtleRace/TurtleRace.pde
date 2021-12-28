@@ -18,6 +18,7 @@ String userInput = "";
 PImage turtleImg;
 PImage turtleButtonImg;
 PImage turtleImgAlt;
+PImage turtleTitleScreen;
 
 ArrayList <turtle> turtle;
 
@@ -43,18 +44,32 @@ void setup() {
 
 void draw() {
   background(255);
-  BGM.play();
   drawStartLine();
   drawFinishLine();
   
   if (mode == 0) {
+    textSize(48);
+    fill(1, 52, 131);
+    text("Turtle Racing", 215, 300);
+    drawStartButton();
+    BGM.pause();
+    
+    turtleTitleScreen = loadImage("turtle.png");
+    imageMode(CENTER);
+    turtleTitleScreen.resize(80, 80);
+    image(turtleTitleScreen, 150, 245);
+    image(turtleTitleScreen, 500, 105);
+    image(turtleTitleScreen, 350, 550);
+  }
+  else if (mode == 1) {
     textSize(36);
     fill(111, 6, 157);
     text("Place Bet Here:", 225, 300);
     drawButtons();
     drawInputBox();
+    BGM.play();
   }
-  else if (mode == 1) {
+  else if (mode == 2) {
     drawTurtle();
     moveTurtles();
   }
@@ -187,6 +202,15 @@ void drawButtons() {
   
 }
 
+void drawStartButton() {
+  fill(232,225,225);
+  stroke(255);
+  rect(275, 315, buttonWidth + 75, buttonHeight);
+  textSize(24);
+  fill(0);
+  text("Play Game", 285, 345);
+}
+
 void drawInputBox() {
   fill(255);
     stroke(0);
@@ -199,77 +223,84 @@ void drawInputBox() {
 
 void mousePressed(){
   //check for button clicks
-  if (mouseX > 75 && mouseX < 75+buttonWidth && mouseY > 325 && mouseY < 375) {
-    mode = 1;
-    println("you selected turtle 1");
-    turtle.add(new turtle(turtleX, turtleY, (int)random(-9, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 100, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 200, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 300, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 400, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 500, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    money-=Integer.valueOf(userInput);
+  if (mode == 1) {
+    if (mouseX > 75 && mouseX < 75+buttonWidth && mouseY > 325 && mouseY < 375) {
+      mode = 2;
+      println("you selected turtle 1");
+      turtle.add(new turtle(turtleX, turtleY, (int)random(-9, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 100, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 200, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 300, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 400, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 500, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      money-=Integer.valueOf(userInput);
+    }
+    else if (mouseX > 175 && mouseX < 175+buttonWidth && mouseY > 325 && mouseY < 375) {
+      mode = 2;
+      println("you selected turtle 2");
+      turtle.add(new turtle(turtleX, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 100, turtleY, (int)random(-9, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 200, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 300, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 400, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 500, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      money-=Integer.valueOf(userInput);
+    }
+    else if (mouseX > 275 && mouseX < 275+buttonWidth && mouseY > 325 && mouseY < 375) {
+      mode = 2;
+      println("you selected turtle 3");
+      turtle.add(new turtle(turtleX, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 100, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 200, turtleY, (int)random(-9, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 300, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 400, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 500, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      money-=Integer.valueOf(userInput);
+    }
+    else if (mouseX > 375 && mouseX < 375+buttonWidth && mouseY > 325 && mouseY < 375) {
+      mode = 2;
+      println("you selected turtle 4");
+      turtle.add(new turtle(turtleX, turtleY, (int)random(-7, -1), (int)random(0,2)));
+      turtle.add(new turtle(turtleX + 100, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 200, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 300, turtleY, (int)random(-9, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 400, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 500, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      money-=Integer.valueOf(userInput);
+    }
+    else if (mouseX > 475 && mouseX < 475+buttonWidth && mouseY > 325 && mouseY < 375) {
+      mode = 2;
+      println("you selected turtle 5");
+      turtle.add(new turtle(turtleX, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 100, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 200, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 300, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 400, turtleY, (int)random(-9, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 500, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      money-=Integer.valueOf(userInput);
+    }
+    else if (mouseX > 575 && mouseX < 575+buttonWidth && mouseY > 325 && mouseY < 375) {
+      mode = 2;
+      println("you selected turtle 6");
+      turtle.add(new turtle(turtleX, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 100, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 200, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 300, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 400, turtleY, (int)random(-7, -1), (int)random(0, 2)));
+      turtle.add(new turtle(turtleX + 500, turtleY, (int)random(-9, -1), (int)random(0, 2)));
+      money-=Integer.valueOf(userInput);
+    }
   }
-  else if (mouseX > 175 && mouseX < 175+buttonWidth && mouseY > 325 && mouseY < 375) {
-    mode = 1;
-    println("you selected turtle 2");
-    turtle.add(new turtle(turtleX, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 100, turtleY, (int)random(-9, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 200, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 300, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 400, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 500, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    money-=Integer.valueOf(userInput);
-  }
-  else if (mouseX > 275 && mouseX < 275+buttonWidth && mouseY > 325 && mouseY < 375) {
-    mode = 1;
-    println("you selected turtle 3");
-    turtle.add(new turtle(turtleX, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 100, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 200, turtleY, (int)random(-9, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 300, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 400, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 500, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    money-=Integer.valueOf(userInput);
-  }
-  else if (mouseX > 375 && mouseX < 375+buttonWidth && mouseY > 325 && mouseY < 375) {
-    mode = 1;
-    println("you selected turtle 4");
-    turtle.add(new turtle(turtleX, turtleY, (int)random(-7, -1), (int)random(0,2)));
-    turtle.add(new turtle(turtleX + 100, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 200, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 300, turtleY, (int)random(-9, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 400, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 500, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    money-=Integer.valueOf(userInput);
-  }
-  else if (mouseX > 475 && mouseX < 475+buttonWidth && mouseY > 325 && mouseY < 375) {
-    mode = 1;
-    println("you selected turtle 5");
-    turtle.add(new turtle(turtleX, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 100, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 200, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 300, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 400, turtleY, (int)random(-9, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 500, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    money-=Integer.valueOf(userInput);
-  }
-  else if (mouseX > 575 && mouseX < 575+buttonWidth && mouseY > 325 && mouseY < 375) {
-    mode = 1;
-    println("you selected turtle 6");
-    turtle.add(new turtle(turtleX, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 100, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 200, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 300, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 400, turtleY, (int)random(-7, -1), (int)random(0, 2)));
-    turtle.add(new turtle(turtleX + 500, turtleY, (int)random(-9, -1), (int)random(0, 2)));
-    money-=Integer.valueOf(userInput);
+  else if (mode == 0) {
+    if (mouseX > 275 && mouseX < 275+buttonWidth+75 && mouseY > 315 && mouseY < 365) {
+      mode = 1;
+    }
   }
 }
 
 void keyPressed() {
   if (key == 'r') {
-    mode = 0;
+    mode = 1;
     for(int i = 0; i<turtle.size(); i++) {
       turtle a = turtle.get(i);
       turtle.remove(i);
